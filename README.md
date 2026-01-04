@@ -1,77 +1,179 @@
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Django](https://img.shields.io/badge/Django-5.2-darkgreen)
+![DRF](https://img.shields.io/badge/Django%20REST%20Framework-3.15-red)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Production-blue)
+![Railway](https://img.shields.io/badge/Deployed%20on-Railway-purple)
+![API](https://img.shields.io/badge/API-REST-success)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 # BaseCore Property Management System
 
-A comprehensive Django-based property management system for tracking properties, tenants, leases, and payments.
+BaseCore is a **production-ready backend system** for managing properties, tenants, leases, and payments.  
+It is built using **Django and Django REST Framework**, designed with **real-world backend architecture**, and deployed to **Railway with PostgreSQL**.
 
-## Features
-- Property listing and management
-- Tenant information tracking
-- Lease agreement management
-- Payment processing with Payment Intents
-- User authentication and authorization
+---
 
-## Tech Stack
-- **Backend**: Django 4.x, Django REST Framework
-- **Database**: SQLite (development), PostgreSQL (production ready)
-- **API**: RESTful endpoints
-- **Authentication**: Token-based, Session-based
-- **Payments**: Stripe-like payment intent system
+## Live Deployment
+
+- **API Base URL:**  
+  https://pleasant-happiness.up.railway.app/api/
+
+- **Admin Dashboard:**  
+  https://pleasant-happiness.up.railway.app/admin/
+
+- **Status:** Fully deployed and operational
+
+---
+
+## Core Features
+
+- JWT authentication with access and refresh tokens  
+- Role-based permissions (Owner, Manager, Tenant)  
+- Property management (CRUD operations)  
+- Tenant profiles and history tracking  
+- Lease lifecycle management  
+- Payment processing and payment history  
+- RESTful API design with predictable endpoints  
+- Production PostgreSQL database  
+
+---
+
+## Technology Stack
+
+- **Backend Framework:** Django 5.2.7  
+- **API Framework:** Django REST Framework 3.15.2  
+- **Authentication:** JWT (djangorestframework-simplejwt)  
+- **Database:** PostgreSQL (production), SQLite (development)  
+- **API Documentation:** OpenAPI / Swagger (DRF Spectacular)  
+- **Deployment:** Railway.app with Gunicorn  
+- **Static Files:** WhiteNoise  
+- **Security:** CORS, HTTPS, secure cookies  
+
+---
 
 ## Project Structure
-\`\`\`
+
+```
 basecore/
-├── properties/      # Property management
-├── tenants/         # Tenant management
-├── leases/          # Lease agreements
-├── payments/        # Payment processing
-├── users/           # Authentication
-└── basecore/        # Project settings
-\`\`\`
+├── settings/
+│   ├── base.py
+│   ├── development.py
+│   └── production.py
+├── api/
+├── users/
+├── properties/
+├── tenants/
+├── leases/
+├── payments/
+└── manage.py
+```
 
-## Getting Started
+---
 
-### Prerequisites
-- Python 3.8+
-- pip
-- Git
+## Local Development Setup
 
-### Installation
-1. Clone repository:
-   \`\`\`bash
-   git clone https://github.com/Thando-SDE/basecore-property-management.git
-   cd basecore-property-management
-   \`\`\`
+```bash
+# Clone repository
+git clone https://github.com/Thando-SDE/basecore-property-management.git
+cd basecore-property-management
 
-2. Create virtual environment:
-   \`\`\`bash
-   python -m venv venv
-   # On Windows:
-   venv\\Scripts\\activate
-   # On macOS/Linux:
-   source venv/bin/activate
-   \`\`\`
+# Create virtual environment
+python -m venv venv
 
-3. Install dependencies:
-   \`\`\`bash
-   pip install -r requirements.txt
-   \`\`\`
+# Activate virtual environment
+venv\Scripts\activate      # Windows
+source venv/bin/activate   # macOS/Linux
 
-4. Apply migrations:
-   \`\`\`bash
-   python manage.py migrate
-   \`\`\`
+# Install dependencies
+pip install -r requirements.txt
 
-5. Run development server:
-   \`\`\`bash
-   python manage.py runserver
-   \`\`\`
+# Configure environment variables
+cp .env.example .env
 
-6. Visit http://localhost:8000
+# Apply database migrations
+python manage.py migrate
 
-## Development Status
-- **Week 1-2**: Planning, ERD design, API planning
-- **Week 3**: Initial project setup, repository configuration
-- **Week 4**: Core models, API endpoints, authentication
-- **Week 5**: Frontend integration, testing, deployment
+# Create admin user
+python manage.py createsuperuser
+
+# Run development server
+python manage.py runserver
+```
+
+---
+
+## API Documentation (Swagger)
+
+Swagger UI is automatically generated using OpenAPI standards.
+
+**Local:**  
+http://127.0.0.1:8000/api/docs/
+
+**Production:**  
+https://pleasant-happiness.up.railway.app/api/docs/
+
+---
+
+## Authentication Example
+
+```http
+POST /api/token/
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "your_password"
+}
+```
+
+---
+
+## Deployment Overview
+
+- Automatic deployment via Railway on `git push`
+- PostgreSQL provisioned and managed by Railway
+- Environment variables secured via dashboard
+- Production settings enforced (`DEBUG=False`)
+- HTTPS enabled with SSL/TLS
+
+---
+
+## Security Practices
+
+- JWT authentication with token refresh
+- Password hashing via Django authentication system
+- Environment-based settings separation
+- CORS configuration for frontend integration
+- Secure cookies in production
+- Encrypted database connections
+
+---
+
+## Development Timeline
+
+- **Weeks 1–2:** System design, ERD, API specification
+- **Week 3:** Project setup and configuration
+- **Week 4:** Core models, endpoints, authentication
+- **Week 5:** Deployment, testing, documentation
+- **Current Status:** Live in production
+
+---
+
+## Author
+
+**Thando SDE**  
+ALX Backend Specialization
+
+- **GitHub:** https://github.com/Thando-SDE
+- **Live Demo:** https://pleasant-happiness.up.railway.app
+
+---
 
 ## License
-MIT License
+
+MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+**Version:** 1.0.0  
+**Live Since:** January 2025
