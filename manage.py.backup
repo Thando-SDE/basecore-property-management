@@ -1,11 +1,7 @@
+#!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
-# Add user site-packages to path for Windows
-user_site_packages = os.path.join(os.path.expanduser('~'), 'AppData', 'Roaming', 'Python', 'Python312', 'site-packages')
-if os.path.exists(user_site_packages):
-    sys.path.append(user_site_packages)
 
 
 def main():

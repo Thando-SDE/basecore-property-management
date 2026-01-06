@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'basecore.settings')
+# IMPORTANT: Use production settings on Railway
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'basecore.settings.production')
 
 application = get_wsgi_application()

@@ -8,13 +8,6 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# Security settings
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-
 # Railway provides the DATABASE_URL environment variable
 DATABASES = {
     'default': dj_database_url.config(
@@ -24,30 +17,24 @@ DATABASES = {
     )
 }
 
-# Static files (WhiteNoise)
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+# Allowed hosts - FIXED FOR RAILWAY
+ALLOWED_HOSTS = [
+    'pleasant-happiness.up.railway.app',
+    '.railway.app',
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0'
+]
 
-# Allowed hosts (Railway will provide this)
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://pleasant-happiness.up.railway.app',
+    'https://*.railway.app'
+]
 
-# CORS settings (if you have frontend)
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
-CORS_ALLOW_CREDENTIALS = True
-
-# API Documentation
-INSTALLED_APPS += ['drf_spectacular']
-REST_FRAMEWORK['DEFAULT_SCHEMA_CLASS'] = 'drf_spectacular.openapi.AutoSchema'
-
-SPECTACULAR_SETTINGS = {
-    'TITLE': 'BaseCore Property Management API',
-    'DESCRIPTION': 'Professional property management system API',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
-    'COMPONENT_SPLIT_REQUEST': True,
-}
+# Comment out drf_spectacular for now to avoid import errors
+# INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'drf_spectacular']
