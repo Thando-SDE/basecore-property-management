@@ -2,7 +2,6 @@
 Production settings for BaseCore Property Management
 """
 import os
-from datetime import timedelta
 import dj_database_url
 from .base import *
 
@@ -39,22 +38,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://pleasant-happiness.up.railway.app',
     'https://*.railway.app',
 ]
-
-# JWT Authentication (SINGLE BLOCK - CRITICAL!)
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
 
 # Disable warnings
 import warnings
