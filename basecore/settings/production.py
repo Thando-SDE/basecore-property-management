@@ -2,13 +2,23 @@
 Production settings for BaseCore Property Management
 """
 import os
+from datetime import timedelta
 import dj_database_url
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# Railway provides the DATABASE_URL environment variable
+# Railway URL
+ALLOWED_HOSTS = [
+    'pleasant-happiness.up.railway.app',
+    '.railway.app',
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0'
+]
+
+# Database
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
@@ -17,6 +27,18 @@ DATABASES = {
     )
 }
 
+# Security
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://pleasant-happiness.up.railway.app',
+    'https://*.railway.app',
+]
 
 # JWT Authentication
 REST_FRAMEWORK = {
@@ -35,32 +57,7 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
 }
-# Static files
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Allowed hosts - FIXED FOR RAILWAY
-ALLOWED_HOSTS = [
-    'pleasant-happiness.up.railway.app',
-    '.railway.app',
-    'localhost',
-    '127.0.0.1',
-    '0.0.0.0'
-]
-
-# CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = [
-    'https://pleasant-happiness.up.railway.app',
-    'https://*.railway.app'
-]
-
-# Comment out drf_spectacular for now to avoid import errors
-# INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'drf_spectacular']
-
-# Disable static files warning
+# Disable warnings
 import warnings
 warnings.filterwarnings('ignore', message='No directory at:')
-
-# Force Django to start even with static files issues
-WHITENOISE_AUTOREFRESH = True
-WHITENOISE_USE_FINDERS = True
