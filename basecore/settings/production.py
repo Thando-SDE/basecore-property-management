@@ -56,3 +56,11 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Comment out drf_spectacular for now to avoid import errors
 # INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'drf_spectacular']
+
+# Disable static files warning
+import warnings
+warnings.filterwarnings('ignore', message='No directory at:')
+
+# Force Django to start even with static files issues
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_USE_FINDERS = True
