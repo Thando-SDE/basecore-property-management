@@ -1,16 +1,21 @@
 """basecore URL Configuration"""
 from django.contrib import admin
 from django.urls import path, include
-from basecore.views import health_check  # IMPORT from views.py
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from basecore.views import health_check
 
 urlpatterns = [
-    # Health check - IMPORTED from views.py
+    # Health check
     path('', health_check, name='health-check'),
     
     # Admin
     path('admin/', admin.site.urls),
     
-    # API endpoints (JWT will be added AFTER app works)
+    # JWT Authentication
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
+    # API endpoints
     path('api/users/', include('users.urls')),
     path('api/properties/', include('properties.urls')),
     path('api/tenants/', include('tenants.urls')),
