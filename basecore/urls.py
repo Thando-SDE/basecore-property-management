@@ -1,8 +1,9 @@
+"""basecore URL Configuration"""
 from django.contrib import admin
 from django.urls import path, include
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
-from .test_views import simple_health
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 @require_GET
 def health_check(request):
@@ -15,9 +16,17 @@ def health_check(request):
     })
 
 urlpatterns = [
+    # Health check
     path('', health_check, name='health-check'),
-    path('health/', simple_health, name='simple-health'),  # Simple always-works endpoint
+    
+    # Admin
     path('admin/', admin.site.urls),
+    
+    # JWT Authentication
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
+    # API endpoints
     path('api/users/', include('users.urls')),
     path('api/properties/', include('properties.urls')),
     path('api/tenants/', include('tenants.urls')),
