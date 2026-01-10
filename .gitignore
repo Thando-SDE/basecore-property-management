@@ -1,23 +1,32 @@
+# Django
+*.log
+*.pot
 *.pyc
 __pycache__/
 db.sqlite3
-.env
-.env.local
+db.sqlite3-journal
+media/
 
-# Static files
-staticfiles/
-mediafiles/
+# Environments
+.env
+.venv
+venv/
+env/
+ENV/
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # OS
 .DS_Store
+Thumbs.db
 
-# Logs
-*.log
+# Railway/Deployment
+staticfiles/  # Railway will create this
+deployment.log
 
-# Python
-venv/
-env/
+# Backup files
+backup/

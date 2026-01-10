@@ -1,18 +1,10 @@
-"""ULTRA SIMPLE URL config - just to test"""
+"""BaseCore URL Configuration"""
 from django.contrib import admin
 from django.urls import path
 from basecore.views import health_check, test_jwt
 
 urlpatterns = [
-    path('', health_check),
-    path('test-jwt/', test_jwt),
+    path('', health_check, name='health_check'),
+    path('test-jwt/', test_jwt, name='test_jwt'),
     path('admin/', admin.site.urls),
 ]
-
-# Comment out or remove the problematic test endpoints
-# from .test_views import test_headers, test_admin_simulation
-
-# urlpatterns += [
-#     path('test-headers/', test_headers),
-#     path('test-admin-sim/', test_admin_simulation),
-# ]
