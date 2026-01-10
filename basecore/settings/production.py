@@ -51,3 +51,6 @@ print(f"=== PRODUCTION SETTINGS LOADED ===")
 print(f"DEBUG: {DEBUG}")
 print(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 print(f"STATIC_ROOT: {STATIC_ROOT}")
+
+# WSGI application
+WSGI_APPLICATION = 'basecore.wsgi.application'
