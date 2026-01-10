@@ -9,10 +9,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-# Test endpoints
-from .test_views import test_headers, test_admin_simulation
+# Comment out or remove the problematic test endpoints
+# from .test_views import test_headers, test_admin_simulation
 
-urlpatterns += [
-    path('test-headers/', test_headers),
-    path('test-admin-sim/', test_admin_simulation),
-]
+# urlpatterns += [
+#     path('test-headers/', test_headers),
+#     path('test-admin-sim/', test_admin_simulation),
+# ]
