@@ -30,3 +30,6 @@ deployment.log
 
 # Backup files
 backup/
+staticfiles/
+*.css
+*.js
