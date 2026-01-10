@@ -6,3 +6,4 @@ class TenantAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'property', 'created_at')
     list_filter = ('property', 'created_at')
     search_fields = ('first_name', 'last_name', 'email', 'phone')
+    ordering = ('-created_at',)

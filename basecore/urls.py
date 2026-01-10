@@ -1,24 +1,18 @@
-"""basecore URL Configuration - SIMPLE & CLEAN"""
+"""ULTRA SIMPLE URL config - just to test"""
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from basecore.views import health_check
+from django.urls import path
+from basecore.views import health_check, test_jwt
 
 urlpatterns = [
-    # Health check
-    path('', health_check, name='health-check'),
-    
-    # Admin
+    path('', health_check),
+    path('test-jwt/', test_jwt),
     path('admin/', admin.site.urls),
-    
-    # ✅ JWT Authentication - ONLY HERE
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    
-    # API endpoints
-    path('api/users/', include('users.urls')),  # This should NOT have JWT endpoints
-    path('api/properties/', include('properties.urls')),
-    path('api/tenants/', include('tenants.urls')),
-    path('api/leases/', include('leases.urls')),
-    path('api/payments/', include('payments.urls')),
+]
+
+# Test endpoints
+from .test_views import test_headers, test_admin_simulation
+
+urlpatterns += [
+    path('test-headers/', test_headers),
+    path('test-admin-sim/', test_admin_simulation),
 ]

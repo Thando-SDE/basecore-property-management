@@ -348,7 +348,7 @@ python manage.py runserver
 | **API Endpoints** | 15+ RESTful routes |
 | **Database Tables** | 5 core models + auth tables |
 | **Active Users** | 10+ registered via API |
-| **Deployment Date** | January 6, 2024 |
+| **Deployment Date** | January 6, 2026 |
 | **Uptime** | 99%+ on Railway |
 | **Avg Response Time** | <200ms |
 | **Database** | PostgreSQL with relationships |
